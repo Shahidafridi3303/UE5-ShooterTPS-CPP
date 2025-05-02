@@ -293,7 +293,10 @@ private:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Rarity, meta = (AllowPrivateAccess = "true"))
 	UTexture2D* IconBackground;
 
+	FGuid ID;
+
 public:
+	FORCEINLINE FGuid GetGuid() const { return ID; }
 	FORCEINLINE UWidgetComponent* GetPickupWidget() const { return PickupWidget; }
 	FORCEINLINE USphereComponent* GetAreaSphere() const { return AreaSphere; }
 	FORCEINLINE UBoxComponent* GetCollisionBox() const { return CollisionBox; }

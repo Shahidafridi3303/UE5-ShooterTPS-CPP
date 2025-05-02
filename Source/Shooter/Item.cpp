@@ -62,6 +62,8 @@ void AItem::BeginPlay()
 {
 	Super::BeginPlay();
 
+	ID = FGuid::NewGuid();
+
 	// Hide Pickup Widget
 	if (PickupWidget)
 	{
@@ -90,7 +92,7 @@ void AItem::OnSphereOverlap(UPrimitiveComponent* OverlappedComponent, AActor* Ot
 		AShooterCharacter* ShooterCharacter = Cast<AShooterCharacter>(OtherActor);
 		if (ShooterCharacter)
 		{
-			ShooterCharacter->IncrementOverlappedItemCount(1);
+			ShooterCharacter->IncrementOverlappedItemCount(1, ID);
 		}
 	}
 }
@@ -102,7 +104,7 @@ void AItem::OnSphereEndOverlap(UPrimitiveComponent* OverlappedComponent, AActor*
 		AShooterCharacter* ShooterCharacter = Cast<AShooterCharacter>(OtherActor);
 		if (ShooterCharacter)
 		{
-			ShooterCharacter->IncrementOverlappedItemCount(-1);
+			ShooterCharacter->IncrementOverlappedItemCount(-1, ID);
 			ShooterCharacter->UnHighlightInventorySlot();
 		}
 	}
